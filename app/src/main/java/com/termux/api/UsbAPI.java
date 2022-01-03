@@ -43,14 +43,6 @@ public class UsbAPI {
                         }
                     });
                     break;
-                case "permission":
-                    device = getDevice(apiReceiver, context, intent);
-                    if (device == null) return;
-                    ResultReturner.returnData(apiReceiver, intent, out -> {
-                        boolean result = getPermission(device, context, intent);
-                        out.append(result ? "yes\n" : "no\n");
-                    });
-                    break;
                 case "open":
                     device = getDevice(apiReceiver, context, intent);
                     if (device == null) return;
@@ -67,6 +59,14 @@ public class UsbAPI {
                                 }
                             } else out.append("No permission\n");
                         }
+                    });
+                    break;
+                case "permission":
+                    device = getDevice(apiReceiver, context, intent);
+                    if (device == null) return;
+                    ResultReturner.returnData(apiReceiver, intent, out -> {
+                        boolean result = getPermission(device, context, intent);
+                        out.append(result ? "yes\n" : "no\n");
                     });
                     break;
                 default:
